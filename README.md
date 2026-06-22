@@ -4,7 +4,6 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![License](https://img.shields.io/badge/Lisensi-Akademik-lightgrey?style=flat)
 
 Situs web arsip & edukasi digital untuk program **Kuliah Kerja Nyata (KKN) Kelompok 7 Universitas Kristen Duta Wacana (UKDW)**, yang dilaksanakan di Dusun Kayat, Kelurahan Poko, Kecamatan Pringkuku, Kabupaten Pacitan.
 
@@ -16,11 +15,9 @@ Tema utama program ini adalah **sosialisasi dan pendampingan usaha briket arang 
 - [Fitur Utama](#fitur-utama)
 - [Teknologi yang Digunakan](#teknologi-yang-digunakan)
 - [Struktur Direktori](#struktur-direktori)
-- [Cara Menjalankan](#cara-menjalankan)
 - [Halaman Situs](#halaman-situs)
 - [Catatan Teknis](#catatan-teknis)
 - [Tim Penyusun](#tim-penyusun)
-- [Lisensi](#lisensi)
 
 ## Tentang Project
 
@@ -66,24 +63,6 @@ KKN Kelompok 7/
 └── data/                 # Aset gambar, video, dan logo
 ```
 
-## Cara Menjalankan
-
-Project ini murni PHP tanpa proses build, sehingga dapat dijalankan dengan server PHP standar.
-
-1. Pastikan PHP sudah terpasang (disarankan PHP 8.x), bisa lewat [XAMPP](https://www.apachefriends.org/) atau langsung dari [php.net](https://www.php.net/).
-2. Clone repository ini:
-   ```bash
-   git clone https://github.com/Fiegoldes-Shi/Arsip-Digital-KKN-07-Kayat.git
-   cd Arsip-Digital-KKN-07-Kayat
-   ```
-3. Jalankan server PHP bawaan dari direktori project:
-   ```bash
-   php -S localhost:8000
-   ```
-4. Buka `http://localhost:8000` di browser.
-
-> Koneksi internet diperlukan untuk fitur ekspor Excel di halaman kalkulator, karena library SheetJS dimuat dari CDN.
-
 ## Halaman Situs
 
 | Halaman | File | Deskripsi |
@@ -104,7 +83,3 @@ Project ini murni PHP tanpa proses build, sehingga dapat dijalankan dengan serve
 ## Tim Penyusun
 
 Disusun oleh mahasiswa KKN Kelompok 7 Universitas Kristen Duta Wacana, penempatan Dusun Kayat, Kelurahan Poko, Kecamatan Pringkuku, Kabupaten Pacitan — Tahun 2025.
-
-## Lisensi
-
-Project ini dibuat untuk kebutuhan dokumentasi dan edukasi program KKN, dan dapat digunakan kembali untuk kebutuhan akademik serupa dengan tetap mencantumkan atribusi kepada tim penyusun.
