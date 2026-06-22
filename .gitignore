@@ -1,0 +1,11 @@
+# Tooling & konfigurasi lokal
+.claude/
+
+# Dokumentasi internal (tidak untuk publik)
+dokumentasi/
+
+# Berkas pendukung non-kode (LPJ, proposal, spreadsheet sumber)
+Tidak penting/
+
+# Arsip versi lama kalkulator (digantikan oleh sella.php)
+lamasella.php

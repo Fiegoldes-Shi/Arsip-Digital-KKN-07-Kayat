@@ -1,0 +1,584 @@
+/* ============================================================
+   STYLE RESPONSIVE — Penyesuaian UI untuk Tablet & Mobile
+   File ini di-load SETELAH style.css, sehingga setiap aturan
+   di sini menimpa (override) versi desktop sesuai breakpoint.
+   Tidak ada perubahan terhadap logika JS — hanya tampilan
+   (kecuali atribut data-label kosmetik di script.js/PHP, yang
+   tidak memengaruhi index row.cells[] atau hasil kalkulasi).
+   ============================================================ */
+
+/* ====================================================== */
+/* === TABLET & MOBILE (DI BAWAH 992px) === */
+/* ====================================================== */
+@media (max-width: 992px) {
+
+    .container {
+        width: 92%;
+    }
+    body {
+        font-size: 16px;
+        line-height: 1.7;
+        -webkit-text-size-adjust: 100%;
+    }
+    .card, .card-section, .dynamic-calculator-form fieldset {
+        padding: 24px;
+    }
+    .card h2, .card-section h3, .dynamic-calculator-form legend {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+    .card p, .card-section p, .intro-section p, .tab-content p {
+        line-height: 1.8;
+        margin-bottom: 16px;
+    }
+    .card ul, .card ol, .card-section ul, .card-section ol {
+        line-height: 1.8;
+    }
+    .card ul li, .card ol li, .card-section ul li, .card-section ol li {
+        margin-bottom: 10px;
+    }
+
+    /* --- Header & Navigasi ---
+       Dipaksa "fixed" (bukan sticky) di mobile/tablet supaya selalu
+       menetap di atas viewport tanpa tergantung containing block
+       parent manapun. body diberi padding-top sebesar tinggi header
+       agar konten di bawahnya tidak tertutup. */
+    body {
+        padding-top: 72px;
+    }
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+    }
+    .header-container {
+        gap: 15px;
+    }
+    nav {
+        display: none;
+    }
+    .header-right {
+        order: 3;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .logo-area {
+        flex-grow: 1;
+        min-width: 0;
+    }
+    .logo-text h1 {
+        font-size: 16px;
+    }
+    .burger-icon {
+        display: block;
+        font-size: 22px;
+    }
+    #nav-menu {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(7, 34, 79, 0.96);
+        backdrop-filter: blur(20px);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s var(--ease-apple);
+    }
+    #nav-menu.active {
+        max-height: 500px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    #nav-menu ul {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 0;
+        gap: 0;
+    }
+    #nav-menu ul li {
+        width: 100%;
+    }
+    #nav-menu ul li a {
+        display: block;
+        padding: 20px 28px;
+        width: 100%;
+        font-size: 16px;
+        line-height: 1.4;
+        text-align: left;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    #nav-menu ul li:last-child a {
+        border-bottom: none;
+    }
+    #nav-menu ul li a:active {
+        background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    /* --- Hero --- */
+    .hero {
+        padding: 60px 20px;
+    }
+    .hero-social-links {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .social-link {
+        justify-content: center;
+    }
+
+    /* ============================================================
+       SEMUA TABEL BERKOLOM BANYAK → CARD VERTIKAL DI MOBILE
+       Berlaku untuk: info-table-center-col, rab-table, rincian-tabel,
+       calc-table (kalkulator). Label kolom diambil dari data-label
+       (di-set di PHP/JS, murni kosmetik, tidak memengaruhi logika).
+       ============================================================ */
+    .info-table-center-col,
+    .rab-table,
+    .rincian-tabel,
+    .calc-table-wrapper .calc-table {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        border-collapse: collapse;
+        box-shadow: none;
+    }
+    .info-table-center-col thead,
+    .rab-table thead,
+    .rincian-tabel thead,
+    .calc-table-wrapper .calc-table thead {
+        display: none;
+    }
+    .info-table-center-col,
+    .info-table-center-col tbody,
+    .info-table-center-col tr,
+    .rab-table,
+    .rab-table tbody,
+    .rab-table tr,
+    .rincian-tabel,
+    .rincian-tabel tbody,
+    .rincian-tabel tr,
+    .calc-table-wrapper .calc-table,
+    .calc-table-wrapper .calc-table tbody,
+    .calc-table-wrapper .calc-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    /* Setiap <tr> jadi kartu putih, setiap <td> jadi 1 baris label+value */
+    .info-table-center-col tbody tr,
+    .rab-table tbody tr,
+    .rincian-tabel tbody tr:not(.sub-header):not(.total-row),
+    .calc-table-wrapper .calc-table tbody tr {
+        background-color: #fff;
+        border: 1px solid var(--separator);
+        border-radius: var(--radius-md);
+        padding: 6px 14px;
+        margin-bottom: 12px;
+        box-shadow: var(--shadow-soft);
+    }
+    .info-table-center-col td,
+    .rab-table td,
+    .rincian-tabel td,
+    .calc-table-wrapper .calc-table td,
+    .info-table-center-col td.text-right,
+    .info-table-center-col td.text-center,
+    .rab-table td.text-right,
+    .rab-table td.text-center,
+    .rincian-tabel td.text-right,
+    .rincian-tabel td.text-center {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 10px 0;
+        margin: 0;
+        text-align: left !important;
+        border: none;
+        border-bottom: 1px solid var(--separator);
+        background-color: transparent !important;
+        color: var(--text-primary) !important;
+        border-radius: 0 !important;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+    .info-table-center-col td:last-child,
+    .rab-table td:last-child,
+    .rincian-tabel td:last-child,
+    .calc-table-wrapper .calc-table td:last-child {
+        border-bottom: none;
+    }
+    .info-table-center-col td::before,
+    .rab-table td::before,
+    .rincian-tabel td::before,
+    .calc-table-wrapper .calc-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-align: left;
+        margin-bottom: 4px;
+    }
+    /* Override text-right/text-center desktop: di card-vertikal mobile semua rata kiri */
+    .calc-table-wrapper .calc-table td.text-right,
+    .calc-table-wrapper .calc-table td.text-center {
+        text-align: left;
+    }
+    .calc-table-wrapper .calc-table td input {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        text-align: left;
+    }
+    .calc-table-wrapper .calc-table td.subtotal {
+        font-weight: 700;
+        color: var(--dark-blue);
+    }
+    /* Tahapan/aspek (kolom tengah info-table) ditonjolkan sebagai judul baris */
+    .info-table-center-col td:nth-child(2) {
+        display: block !important;
+        width: 100%;
+        background-color: var(--dark-blue) !important;
+        color: #fff !important;
+        border-radius: var(--radius-sm) !important;
+        font-weight: 700;
+        font-size: 15px;
+        text-align: center;
+        margin: 4px 0 8px;
+        padding: 10px 12px;
+        border-bottom: none;
+    }
+    .info-table-center-col td:nth-child(2) strong {
+        color: #fff !important;
+    }
+    .info-table-center-col td:nth-child(2)::before {
+        display: none;
+    }
+
+    /* Baris sub-header / total / grand-total: tampil sebagai pita ringkasan, bukan kartu input */
+    .rincian-tabel tr.sub-header td,
+    .rincian-tabel tr.total-row td {
+        display: block;
+        width: 100%;
+        text-align: left;
+        border: none;
+        padding: 12px 14px;
+    }
+    .rincian-tabel tr.sub-header {
+        display: block;
+        background-color: var(--dark-blue);
+        color: #fff;
+        border-radius: var(--radius-sm);
+        margin: 16px 0 8px;
+        font-weight: 700;
+    }
+    .rincian-tabel tr.sub-header td {
+        color: #fff !important;
+    }
+    .rincian-tabel tr.total-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--pale-yellow-highlight);
+        border-radius: var(--radius-sm);
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+    .rincian-tabel tr.total-row td {
+        width: auto;
+        padding: 12px 14px;
+    }
+    .rincian-tabel tfoot,
+    .rab-table tfoot {
+        display: block;
+    }
+    .rincian-tabel tfoot tr,
+    .rab-table tfoot tr {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        background-color: var(--gold-accent);
+        border-radius: var(--radius-sm);
+        padding: 16px 18px;
+        margin-top: 8px;
+    }
+    .rincian-tabel tfoot td,
+    .rab-table tfoot td {
+        display: block !important;
+        position: static !important;
+        width: auto !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        flex: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        background-color: transparent !important;
+        color: var(--dark-blue) !important;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 1.5;
+        text-align: left !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        overflow-wrap: normal !important;
+    }
+    .rincian-tabel tfoot td:last-child,
+    .rab-table tfoot td:last-child {
+        font-size: 19px;
+        font-weight: 800;
+    }
+    .rincian-tabel tfoot td::before,
+    .rab-table tfoot td::before {
+        content: none !important;
+    }
+
+    /* Tabel kalkulator: tfoot (subtotal per bagian) jadi pita ringkasan, bukan kartu */
+    .calc-table-wrapper .calc-table tfoot {
+        display: block;
+    }
+    .calc-table-wrapper .calc-table tfoot tr {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+        padding: 12px 14px;
+        border-radius: var(--radius-sm);
+        margin-top: 8px;
+    }
+    .calc-table-wrapper .calc-table tfoot td {
+        display: inline;
+        width: auto;
+        padding: 0;
+        border: none;
+        background-color: transparent !important;
+    }
+    .calc-table-wrapper .calc-table tfoot td:first-child {
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .calc-table-wrapper .calc-table tfoot td.text-right {
+        font-weight: 700;
+        font-size: 16px;
+    }
+    .calc-table-wrapper .calc-table tfoot .total-row {
+        background-color: var(--pale-yellow-highlight);
+    }
+    .calc-table-wrapper .calc-table tfoot .summary-row {
+        background-color: #fafafa;
+    }
+
+    /* --- Komponen Spesifik --- */
+    .comparison-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    .comparison-container {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .form-group {
+        margin-bottom: 16px;
+    }
+    .gallery-container.two-cols {
+        grid-template-columns: 1fr;
+    }
+    .slider-container {
+        border-radius: 0;
+    }
+    .slide img {
+        border-radius: 0;
+    }
+
+    /* ============================================================
+       KALKULATOR DINAMIS — kontainer & kontrol jumlah baris
+       ============================================================ */
+    .dynamic-calculator-form,
+    .dynamic-calculator-form fieldset {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+    .dynamic-calculator-form fieldset {
+        padding: 18px 16px;
+    }
+    .dynamic-calculator-form legend {
+        font-size: 16.5px;
+        line-height: 1.45;
+        white-space: normal;
+        word-wrap: break-word;
+        padding: 0 4px;
+    }
+
+    .dynamic-rows-control {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 16px;
+    }
+    .dynamic-rows-control label {
+        font-size: 15px;
+    }
+    .row-stepper {
+        align-self: flex-start;
+        height: 44px;
+    }
+    .row-stepper-btn {
+        width: 44px;
+        font-size: 19px;
+    }
+    .row-stepper input[type="number"] {
+        width: 56px;
+        font-size: 17px;
+    }
+
+    .calc-table-wrapper {
+        margin: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    /* Form actions & history: full-width, mudah disentuh */
+    .form-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .history-show-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* ============================================================
+       POPUP (hasil, riwayat, detail) — ala action sheet iOS
+       ============================================================ */
+    .popup-content,
+    .popup-content-wide {
+        width: 92%;
+        max-width: 92%;
+        padding: 26px 18px;
+        max-height: 86vh;
+        box-sizing: border-box;
+    }
+    #popup-detail .popup-content-wide {
+        max-width: 92%;
+    }
+    .history-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding-right: 28px;
+    }
+    .history-header-actions {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .history-header-actions button {
+        flex: 1 1 auto;
+        font-size: 13px;
+        padding: 9px 12px;
+        white-space: nowrap;
+    }
+    .detail-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -4px;
+        padding: 0 4px;
+    }
+    .detail-table {
+        min-width: 480px;
+    }
+    .detail-body h4 {
+        margin-top: 26px;
+    }
+    .detail-summary-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px 16px;
+    }
+
+    /* --- Riwayat: kartu disusun vertikal, tombol full-width rapi --- */
+    .history-list {
+        gap: 12px;
+    }
+    .history-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 16px;
+    }
+    .history-item-info {
+        gap: 6px;
+    }
+    .history-item-result {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        gap: 8px;
+        padding-top: 8px;
+        border-top: 1px solid var(--separator);
+    }
+    .history-item-result .history-laba {
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+    .history-detail-btn,
+    .history-download-row-btn,
+    .history-delete-btn {
+        flex-shrink: 0;
+    }
+}
+
+/* ====================================================== */
+/* === MOBILE KECIL (DI BAWAH 480px, iPhone SE/mini dll) === */
+/* ====================================================== */
+@media (max-width: 480px) {
+    .card, .card-section {
+        padding: 18px;
+    }
+    .dynamic-calculator-form fieldset {
+        padding: 16px 14px;
+    }
+    .hero {
+        padding: 48px 16px;
+    }
+    .hero h1 {
+        font-size: 26px;
+        line-height: 1.3;
+    }
+    .hero p {
+        font-size: 15px;
+    }
+    .dynamic-rows-control {
+        padding: 14px;
+    }
+    .info-table-center-col tbody tr,
+    .rab-table tbody tr,
+    .rincian-tabel tbody tr,
+    .calc-table-wrapper .calc-table tbody tr {
+        padding: 4px 12px;
+    }
+    .info-table-center-col td::before,
+    .rab-table td::before,
+    .rincian-tabel td::before,
+    .calc-table-wrapper .calc-table td::before {
+        font-size: 12.5px;
+    }
+    .history-item-result .history-laba {
+        font-size: 15px;
+    }
+    .history-header-actions button {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+}
